@@ -1,0 +1,100 @@
+/* src/Sidebar.css */
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background-color: #ffffff;
+    border-right: 1px solid #e9ecef;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 1.5rem;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+.company-name {
+    font-size: 2rem;
+    font-weight: 700;
+    font-style: italic;
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 3rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.company-name:hover {
+    transform: scale(1.05);
+    text-shadow: 0px 4px 15px rgba(0, 123, 255, 0.4);
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+button.nav-item {
+    background-color: transparent; 
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #495057;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+button.nav-item:hover {
+    background-color: #f1f3f5;
+}
+
+button.nav-item.active {
+    background-color: #e6f2ff;
+    color: #007bff !important;
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.profile-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.profile-name {
+    font-weight: 600;
+}
+
+.profile-email {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.profile-arrow {
+    color: #6c757d;
+}

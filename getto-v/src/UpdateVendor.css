@@ -1,0 +1,113 @@
+/* src/UpdateVendor.css */
+.update-vendor-container {
+  width: 100%;
+  max-width: 900px;
+  padding: 2rem 2.5rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex; /* Changed to flex to align items */
+  align-items: center; /* Vertically center items */
+  gap: 1rem; /* Add space between button and title */
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 2.5rem;
+  color: #333;
+}
+
+.header h2 {
+    margin: 0; /* Remove default margin from h2 */
+    font-size: inherit; /* Inherit font size from parent */
+}
+
+.back-button {
+    background: none;
+    border: none;
+    font-size: 2rem; /* Make the arrow larger */
+    cursor: pointer;
+    color: #333;
+    padding: 0;
+}
+
+
+.vendor-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem 2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group.description-group {
+    grid-column: span 2;
+}
+
+label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #dbe1e8;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  background-color: #fff;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+textarea {
+  min-height: 80px;
+  max-height: 250px;
+  resize: vertical;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #adb5bd;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.image-preview {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 0.5rem;
+  border: 2px solid #eee;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
