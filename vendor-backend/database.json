@@ -1,0 +1,191 @@
+[
+  {
+    "formData": {
+      "storeName": "Vamsi Clothing Store",
+      "ownerName": "Vamshi Ram Teja D",
+      "phone": "6303727961",
+      "email": "vamsidavuluri1@gmail.com",
+      "location": "6-3-609/1&2, Anand Nagar Colony Rd, Veera Reddy Colony, Khairtabad, Hyderabad, Telangana 500004, India",
+      "address": "Shanti Nivas Apartment, Anand Nagar Colony Road, Khairtabad",
+      "state": "Telangana",
+      "city": "Hyderabad",
+      "pincode": "500004",
+      "landmark": "",
+      "description": ""
+    },
+    "timings": {
+      "monday": {
+        "isOpen": true,
+        "from": "12:20",
+        "to": "00:00"
+      },
+      "tuesday": {
+        "isOpen": false,
+        "from": "",
+        "to": ""
+      },
+      "wednesday": {
+        "isOpen": false,
+        "from": "",
+        "to": ""
+      },
+      "thursday": {
+        "isOpen": false,
+        "from": "",
+        "to": ""
+      },
+      "friday": {
+        "isOpen": false,
+        "from": "",
+        "to": ""
+      },
+      "saturday": {
+        "isOpen": false,
+        "from": "",
+        "to": ""
+      },
+      "sunday": {
+        "isOpen": false,
+        "from": "",
+        "to": ""
+      }
+    },
+    "businessDetails": {
+      "gst": "j",
+      "pan": "4774884883",
+      "commission": "8",
+      "bankName": "new bank added",
+      "accountType": "Current",
+      "accountHolderName": "vamsi",
+      "accountNumber": "7",
+      "accountNumberConfirm": "7",
+      "ifscCode": "47748848839"
+    }
+  },
+  {
+    "formData": {
+      "storeName": "Zara",
+      "ownerName": "Shiva",
+      "phone": "123456789",
+      "email": "s123@gmail.com",
+      "location": "CCQW+56F, Meghamala Apartment road, Kumar Basti, Srinivasa Nagar, Sanjeeva Reddy Nagar, Hyderabad, Telangana 500038, India",
+      "address": "Meghamala Classic Apartments, Meghamala Apartment Road, Sanjeeva Reddy Nagar, Kumar Basti",
+      "state": "Telangana",
+      "city": "Hyderabad",
+      "pincode": "500038",
+      "landmark": "",
+      "description": ""
+    },
+    "timings": {
+      "monday": {
+        "isOpen": true,
+        "from": "10:00",
+        "to": "23:00"
+      },
+      "tuesday": {
+        "isOpen": true,
+        "from": "10:00",
+        "to": "23:00"
+      },
+      "wednesday": {
+        "isOpen": true,
+        "from": "10:00",
+        "to": "23:00"
+      },
+      "thursday": {
+        "isOpen": true,
+        "from": "10:00",
+        "to": "23:00"
+      },
+      "friday": {
+        "isOpen": true,
+        "from": "10:00",
+        "to": "23:00"
+      },
+      "saturday": {
+        "isOpen": false,
+        "from": "10:00",
+        "to": "23:00"
+      },
+      "sunday": {
+        "isOpen": false,
+        "from": "10:00",
+        "to": "23:00"
+      }
+    },
+    "businessDetails": {
+      "gst": "123455",
+      "pan": "12345",
+      "commission": "1",
+      "bankName": "new bank added",
+      "accountType": "Savings",
+      "accountHolderName": "s",
+      "accountNumber": "12345",
+      "accountNumberConfirm": "12345",
+      "ifscCode": "12345"
+    }
+  },
+  {
+    "formData": {
+      "storeName": "xyz",
+      "ownerName": "xys",
+      "phone": "123456789",
+      "email": "getto@gmail.com",
+      "location": "CF64+777, Anand Nagar Colony, Khairtabad, Hyderabad, Telangana 500004, India",
+      "address": "Sri Chakra Apartment, Khairtabad",
+      "state": "Telangana",
+      "city": "Hyderabad",
+      "pincode": "500004",
+      "landmark": "",
+      "description": ""
+    },
+    "timings": {
+      "monday": {
+        "isOpen": true,
+        "from": "10:00",
+        "to": "23:00"
+      },
+      "tuesday": {
+        "isOpen": true,
+        "from": "10:00",
+        "to": "23:00"
+      },
+      "wednesday": {
+        "isOpen": true,
+        "from": "10:00",
+        "to": "23:00"
+      },
+      "thursday": {
+        "isOpen": true,
+        "from": "10:00",
+        "to": "23:00"
+      },
+      "friday": {
+        "isOpen": true,
+        "from": "10:00",
+        "to": "23:00"
+      },
+      "saturday": {
+        "isOpen": false,
+        "from": "10:00",
+        "to": "23:00"
+      },
+      "sunday": {
+        "isOpen": false,
+        "from": "10:00",
+        "to": "23:00"
+      }
+    },
+    "businessDetails": {
+      "gst": "1",
+      "pan": "1",
+      "commission": "1",
+      "bankName": "qwert",
+      "accountType": "Savings",
+      "accountHolderName": "hello",
+      "accountNumber": "1234",
+      "accountNumberConfirm": "1234",
+      "ifscCode": "212321"
+    }
+  }
+]
