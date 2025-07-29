@@ -5,7 +5,7 @@ import { useJsApiLoader, Autocomplete } from '@react-google-maps/api';
 import './UpdateVendor.css';
 
 // IMPORTANT: Replace this with your actual Google Maps API key
-const GOOGLE_MAPS_API_KEY = "AIzaSyDV_enuaHK6dGFGszfOyVfILcG8zt1cPCw";
+const GOOGLE_MAPS_API_KEY = "Api";
 
 const libraries = ['places'];
 
