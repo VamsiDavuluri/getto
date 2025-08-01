@@ -35,10 +35,10 @@ function App() {
   // --- LIST & NAVIGATION MANAGEMENT ---
   const [searchTerm, setSearchTerm] = useState('');
   const [sortConfig, setSortConfig] = useState({ key: 'storeName', direction: 'ascending' });
-  const [activeTab, setActiveTab] = useState('vendor'); // 'vendor', 'timings', 'bank'
-  
+  const [activeTab, setActiveTab] = useState('vendor');
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
+  const itemsPerPage = 10; // This is now a constant
+
   // --- API CALLS ---
   const fetchVendors = async () => {
     try {
@@ -187,10 +187,10 @@ function App() {
         return 0;
       });
     }
-      const firstItemIndex = (currentPage - 1) * itemsPerPage;
-      const lastItemIndex = firstItemIndex + itemsPerPage;
-      return sortableVendors.slice(firstItemIndex, lastItemIndex);
-  }, [vendors, searchTerm, sortConfig, currentPage, itemsPerPage]);
+    const firstItemIndex = (currentPage - 1) * itemsPerPage;
+    const lastItemIndex = firstItemIndex + itemsPerPage;
+    return sortableVendors.slice(firstItemIndex, lastItemIndex);
+  }, [vendors, searchTerm, sortConfig, currentPage]); // Removed itemsPerPage as it's a constant
 
   // --- FORM AND NAVIGATION HANDLERS ---
   const handleUniversalChange = (e, setter) => {
@@ -198,7 +198,9 @@ function App() {
     const maxLengths = { phone: 10, ifscCode: 11, pan: 10, gst: 15, accountNumber: 18, accountNumberConfirm: 18 };
     if (maxLengths[name] && value.length > maxLengths[name]) return;
     setter(prev => ({ ...prev, [name]: value }));
-    if (errors[name]) setErrors(prev => ({ ...prev, [name]: null }));
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: null }));
+    }
   };
   
   const handleCancel = () => {
@@ -254,16 +256,20 @@ function App() {
   
   const handleApplyToAll = () => {
     const mondayTimings = timings['monday'];
-    if (mondayTimings.isOpen) {
-      const newTimings = { ...timings };
-      Object.keys(newTimings).forEach(day => {
-        if (day !== 'monday') newTimings[day] = { ...mondayTimings };
-      });
-      setTimings(newTimings);
-      setToast({ message: "Monday's timings applied to all other days.", type: 'success' });
-    } else {
+    if (!mondayTimings.isOpen) {
       setToast({ message: "Cannot apply, Monday is set to closed.", type: 'error' });
+      return;
     }
+    if (!mondayTimings.from || !mondayTimings.to) {
+      setToast({ message: "Please set Monday's opening and closing times first.", type: 'error' });
+      return;
+    }
+    const newTimings = { ...timings };
+    Object.keys(newTimings).forEach(day => {
+      newTimings[day] = { ...mondayTimings };
+    });
+    setTimings(newTimings);
+    setToast({ message: "Monday's timings have been applied to all days.", type: 'success' });
   };
 
   // --- RENDER LOGIC ---
@@ -279,12 +285,17 @@ function App() {
               <button className="sidebar-toggle-btn" onClick={() => setIsSidebarOpen(!isSidebarOpen)}><FaBars /></button>
             </div>
             <VendorList 
-              vendors={visibleVendors} onEdit={handleEdit} onDelete={handleDelete}
-              onAddNew={handleAddNew} onSearch={setSearchTerm}
-              requestSort={requestSort} sortConfig={sortConfig} currentPage={currentPage}
-              itemsPerPage={itemsPerPage} totalVendors={vendors.length}
+              vendors={visibleVendors} 
+              onEdit={handleEdit} 
+              onDelete={handleDelete}
+              onAddNew={handleAddNew} 
+              onSearch={setSearchTerm}
+              requestSort={requestSort} 
+              sortConfig={sortConfig}
+              currentPage={currentPage}
+              itemsPerPage={itemsPerPage}
+              totalVendors={vendors.length}
               onPageChange={setCurrentPage}
-
             />
           </>
         ) : (
@@ -303,22 +314,30 @@ function App() {
             <div className="tab-content">
               {activeTab === 'vendor' && (
                 <UpdateVendor 
-                  formData={formData} handleChange={(e) => handleUniversalChange(e, setFormData)}
-                  handleImageChange={handleImageChange} errors={errors} onPlaceSelect={handlePlaceSelect}
-                  onBack={handleCancel} handleBlur={handleBlur}
+                  formData={formData} 
+                  handleChange={(e) => handleUniversalChange(e, setFormData)}
+                  handleImageChange={handleImageChange} 
+                  errors={errors} 
+                  onPlaceSelect={handlePlaceSelect}
+                  onBack={handleCancel} 
+                  handleBlur={handleBlur}
                   editingVendorId={editingVendorId}
                 />
               )}
               {activeTab === 'timings' && (
                 <StoreTimings 
-                  timings={timings} handleToggle={handleToggle}
-                  handleTimeChange={handleTimeChange} handleApplyToAll={handleApplyToAll}
+                  timings={timings} 
+                  handleToggle={handleToggle}
+                  handleTimeChange={handleTimeChange} 
+                  handleApplyToAll={handleApplyToAll}
                 />
               )}
               {activeTab === 'bank' && (
                 <BusinessAndBankDetails 
-                  details={businessDetails} handleChange={(e) => handleUniversalChange(e, setBusinessDetails)} 
-                  errors={errors} handleBlur={handleBlur}
+                  details={businessDetails} 
+                  handleChange={(e) => handleUniversalChange(e, setBusinessDetails)} 
+                  errors={errors} 
+                  handleBlur={handleBlur}
                 />
               )}
             </div>
