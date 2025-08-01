@@ -1,28 +1,94 @@
 /* src/VendorList.css */
+
 .vendor-list-container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  max-width: 1200px;
-  padding: 2rem;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 0 2rem;
+  gap: 1.5rem;
 }
 
+/* --- HEADER STYLES --- */
 .list-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  padding-top: 1rem;
+}
+
+.list-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #212529;
+  margin: 0;
+}
+
+.list-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* --- CORRECTED SEARCH BOX STYLING --- */
+.search-input-wrapper {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  color: #8a929a;
+  pointer-events: none; /* The icon itself isn't clickable */
+}
+
+.search-input {
+  /* This padding pushes the placeholder text past the icon */
+  padding-left: 2.75rem !important; 
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  width: 280px;
+  background-color: #ffffff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
 }
 
 .add-new-btn {
-  background-color: #007bff;
+  background-color: #0d6efd;
   color: white;
   border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
   font-weight: 500;
+  font-size: 0.9rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.add-new-btn:hover {
+  background-color: #0b5ed7;
+}
+
+/* --- TABLE CARD STYLES --- */
+.table-wrapper {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  border: 1px solid #e9ecef;
 }
 
 .vendor-table {
@@ -30,36 +96,101 @@
   border-collapse: collapse;
 }
 
-.vendor-table th, .vendor-table td {
-  padding: 1rem;
+.vendor-table th,
+.vendor-table td {
+  padding: 1.25rem 1.5rem;
   text-align: left;
   border-bottom: 1px solid #e9ecef;
+  vertical-align: middle;
+}
+
+.vendor-table tbody tr:last-child td {
+  border-bottom: none;
 }
 
 .vendor-table th {
+  background-color: #f8f9fa;
   font-weight: 600;
+  color: #495057;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
+
+.vendor-table td {
+  color: #343a40;
+  font-size: 0.9rem;
+}
+
+/* --- ACTION BUTTON STYLES --- */
 .actions-cell {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.75rem;
+}
+
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: none;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 1rem;
 }
 
 .edit-btn {
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  color: black;
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 500;
+  background-color: #e7f3ff;
+  color: #0d6efd;
+}
+.edit-btn:hover {
+  background-color: #d0e7ff;
 }
 
-.delete-btn{
+.delete-btn {
   background-color: #fce8e6;
-  border: 1px solid #f5c6cb;
-  color : #dc3545;
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
-  cursor: pointer;  
-  font-weight: 500;
+  color: #dc3545;
+}
+.delete-btn:hover {
+  background-color: #f8d7da;
+}
+
+/* --- NEW, SIMPLIFIED SORTING INDICATOR STYLES --- */
+.vendor-table th.sortable {
+  cursor: pointer;
+}
+
+.sort-indicator {
+  color: #0d6efd; /* Blue color for the arrow */
+  margin-left: 0.5rem;
+  display: inline-block; /* Required for transforms */
+  transition: transform 0.2s ease-in-out;
+}
+
+/* By default, the arrow points up */
+.sort-indicator.ascending {
+  transform: rotate(0deg);
+}
+
+/* When the descending class is added, flip it */
+.sort-indicator.descending {
+  transform: rotate(180deg);
+}
+
+/* --- FOOTER STYLES --- */
+.list-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.5rem 1rem;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+/* --- EMPTY STATE --- */
+.empty-state {
+  text-align: center;
+  padding: 4rem;
 }

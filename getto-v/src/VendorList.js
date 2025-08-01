@@ -1,39 +1,117 @@
 // src/VendorList.js
 import React from 'react';
+import { FaSearch, FaPlus, FaEdit, FaTrashAlt } from 'react-icons/fa';
 import './VendorList.css';
 
-const VendorList = ({ vendors, onEdit, onDelete, onAddNew }) => {
+const VendorList = ({
+  vendors,
+  onEdit,
+  onDelete,
+  onAddNew,
+  onSearch,
+  requestSort,
+  sortConfig,
+  currentPage,
+  itemsPerPage,
+  totalVendors,
+  onPageChange,
+}) => {
+  const firstItemNum = (currentPage - 1) * itemsPerPage + 1;
+  const lastItemNum = Math.min(currentPage * itemsPerPage, totalVendors);
+
   return (
     <div className="vendor-list-container">
       <div className="list-header">
-        <h2>All Vendors</h2>
-        <button onClick={onAddNew} className="add-new-btn">Add New Vendor</button>
+        <h2 className="list-title">Vendors</h2>
+        <div className="list-actions">
+          <div className="search-input-wrapper">
+            <FaSearch className="search-icon" />
+            <input
+              type="text"
+              placeholder="Search for vendors..."
+              className="search-input"
+              onChange={(e) => onSearch(e.target.value)}
+            />
+          </div>
+          <button onClick={onAddNew} className="add-new-btn">
+            <FaPlus />
+            <span>Add New Vendor</span>
+          </button>
+        </div>
       </div>
-      <table className="vendor-table">
-        <thead>
-          <tr>
-            <th>Store Name</th>
-            <th>Owner Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {vendors.map((vendor) => (
-            <tr key={vendor.id}>
-              <td>{vendor.formData.storeName}</td>
-              <td>{vendor.formData.ownerName}</td>
-              <td>{vendor.formData.email}</td>
-              <td>{vendor.formData.phone}</td>
-              <td>
-                <button onClick={() => onEdit(vendor.id)} className="edit-btn">Edit</button>
-                <button onClick={() => onDelete(vendor.id)} className="delete-btn">Delete</button>
-              </td>
+
+      <div className="table-wrapper">
+        <table className="vendor-table">
+          <thead>
+            <tr>
+              <th>S.NO.</th>
+              <th onClick={() => requestSort('storeName')} className="sortable">
+                STORE
+                {sortConfig.key === 'storeName' && (
+                  <span className={`sort-indicator ${sortConfig.direction}`}>▲</span>
+                )}
+              </th>
+              <th onClick={() => requestSort('ownerName')} className="sortable">
+                OWNER
+                {sortConfig.key === 'ownerName' && (
+                  <span className={`sort-indicator ${sortConfig.direction}`}>▲</span>
+                )}
+              </th>
+              <th>ADDRESS</th>
+              <th>CONTACT NO</th>
+              <th>ACTION</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {vendors.length > 0 ? (
+              vendors.map((vendor, index) => {
+                const sNo = firstItemNum + index;
+                return (
+                  <tr key={vendor.id}>
+                    <td>{sNo}</td>
+                    <td>{vendor.formData.storeName}</td>
+                    <td>{vendor.formData.ownerName}</td>
+                    <td>{vendor.formData.address}</td>
+                    <td>{vendor.formData.phone}</td>
+                    <td>
+                      <div className="actions-cell">
+                        <button
+                          onClick={() => onEdit(vendor.id)}
+                          className="icon-btn edit-btn"
+                          aria-label="Edit"
+                        >
+                          <FaEdit />
+                        </button>
+                        <button
+                          onClick={() => onDelete(vendor.id)}
+                          className="icon-btn delete-btn"
+                          aria-label="Delete"
+                        >
+                          <FaTrashAlt />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <td colSpan="6" className="empty-state">
+                  <h3>No Vendors Found</h3>
+                  <p>Click "Add New Vendor" to get started.</p>
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      {totalVendors > 0 && (
+        <div className="list-footer">
+          <span>Rows per page: {itemsPerPage}</span>
+          <span>{`${firstItemNum}-${lastItemNum} of ${totalVendors}`}</span>
+        </div>
+      )}
     </div>
   );
 };

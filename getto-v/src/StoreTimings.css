@@ -1,11 +1,7 @@
 /* src/StoreTimings.css */
 .timings-container {
   width: 100%;
-  max-width: 900px;
-  padding: 2rem 2.5rem;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 0;
   box-sizing: border-box;
 }
 

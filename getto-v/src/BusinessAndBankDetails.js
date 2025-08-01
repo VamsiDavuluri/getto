@@ -3,7 +3,8 @@
 import React from 'react';
 import './BusinessAndBankDetails.css';
 
-const BusinessAndBankDetails = ({ details, handleChange, errors }) => {
+// Destructure handleBlur from props
+const BusinessAndBankDetails = ({ details, handleChange, errors, handleBlur }) => {
   return (
     <div className="details-container">
       <div className="details-section">
@@ -11,17 +12,38 @@ const BusinessAndBankDetails = ({ details, handleChange, errors }) => {
         <div className="form-row">
           <div className="form-group">
             <label>GST*</label>
-            <input type="text" name="gst" value={details.gst} onChange={handleChange} />
+            <input 
+              type="text" 
+              name="gst" 
+              value={details.gst} 
+              onChange={handleChange} 
+              onBlur={handleBlur} // Add onBlur
+              className={errors.gst ? 'input-error' : ''} // Add error class
+            />
             {errors.gst && <span className="error-message">{errors.gst}</span>}
           </div>
           <div className="form-group">
             <label>PAN*</label>
-            <input type="text" name="pan" value={details.pan} onChange={handleChange} />
+            <input 
+              type="text" 
+              name="pan" 
+              value={details.pan} 
+              onChange={handleChange}
+              onBlur={handleBlur} // Add onBlur
+              className={errors.pan ? 'input-error' : ''} // Add error class
+            />
             {errors.pan && <span className="error-message">{errors.pan}</span>}
           </div>
           <div className="form-group">
             <label>Commission %*</label>
-            <input type="number" name="commission" value={details.commission} onChange={handleChange} />
+            <input 
+              type="number" 
+              name="commission" 
+              value={details.commission} 
+              onChange={handleChange} 
+              onBlur={handleBlur} // Add onBlur
+              className={errors.commission ? 'input-error' : ''} // Add error class
+            />
             {errors.commission && <span className="error-message">{errors.commission}</span>}
           </div>
         </div>
@@ -31,12 +53,25 @@ const BusinessAndBankDetails = ({ details, handleChange, errors }) => {
         <div className="form-row">
           <div className="form-group">
             <label>Bank Name*</label>
-            <input type="text" name="bankName" value={details.bankName} onChange={handleChange} />
+            <input 
+              type="text" 
+              name="bankName" 
+              value={details.bankName} 
+              onChange={handleChange} 
+              onBlur={handleBlur} // Add onBlur
+              className={errors.bankName ? 'input-error' : ''} // Add error class
+            />
             {errors.bankName && <span className="error-message">{errors.bankName}</span>}
           </div>
           <div className="form-group">
             <label>Account Type*</label>
-            <select name="accountType" value={details.accountType} onChange={handleChange}>
+            <select 
+              name="accountType" 
+              value={details.accountType} 
+              onChange={handleChange}
+              onBlur={handleBlur} // Add onBlur
+              className={errors.accountType ? 'input-error' : ''} // Add error class
+            >
               <option value="" disabled>Select Type</option>
               <option value="Savings">Savings</option>
               <option value="Current">Current</option>
@@ -45,24 +80,52 @@ const BusinessAndBankDetails = ({ details, handleChange, errors }) => {
           </div>
           <div className="form-group">
             <label>Account Holder Name*</label>
-            <input type="text" name="accountHolderName" value={details.accountHolderName} onChange={handleChange} />
+            <input 
+              type="text" 
+              name="accountHolderName" 
+              value={details.accountHolderName} 
+              onChange={handleChange} 
+              onBlur={handleBlur} // Add onBlur
+              className={errors.accountHolderName ? 'input-error' : ''} // Add error class
+            />
             {errors.accountHolderName && <span className="error-message">{errors.accountHolderName}</span>}
           </div>
         </div>
         <div className="form-row">
           <div className="form-group">
             <label>Account Number*</label>
-            <input type="text" name="accountNumber" value={details.accountNumber} onChange={handleChange} />
+            <input 
+              type="text" 
+              name="accountNumber" 
+              value={details.accountNumber} 
+              onChange={handleChange} 
+              onBlur={handleBlur} // Add onBlur
+              className={errors.accountNumber ? 'input-error' : ''} // Add error class
+            />
             {errors.accountNumber && <span className="error-message">{errors.accountNumber}</span>}
           </div>
           <div className="form-group">
             <label>Re-enter Account Number*</label>
-            <input type="text" name="accountNumberConfirm" value={details.accountNumberConfirm} onChange={handleChange} />
+            <input 
+              type="text" 
+              name="accountNumberConfirm" 
+              value={details.accountNumberConfirm} 
+              onChange={handleChange} 
+              onBlur={handleBlur} // Add onBlur
+              className={errors.accountNumberConfirm ? 'input-error' : ''} // Add error class
+            />
             {errors.accountNumberConfirm && <span className="error-message">{errors.accountNumberConfirm}</span>}
           </div>
           <div className="form-group">
             <label>IFSC Code*</label>
-            <input type="text" name="ifscCode" value={details.ifscCode} onChange={handleChange} />
+            <input 
+              type="text" 
+              name="ifscCode" 
+              value={details.ifscCode} 
+              onChange={handleChange} 
+              onBlur={handleBlur} // Add onBlur
+              className={errors.ifscCode ? 'input-error' : ''} // Add error class
+            />
             {errors.ifscCode && <span className="error-message">{errors.ifscCode}</span>}
           </div>
         </div>
