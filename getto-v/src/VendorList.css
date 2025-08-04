@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0 2rem;
   gap: 1.5rem;
 }
 
@@ -13,11 +12,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 1rem;
 }
 
 .list-title {
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 600;
   color: #212529;
   margin: 0;
@@ -29,7 +27,6 @@
   align-items: center;
 }
 
-/* --- CORRECTED SEARCH BOX STYLING --- */
 .search-input-wrapper {
   position: relative;
 }
@@ -37,18 +34,13 @@
 .search-icon {
   position: absolute;
   top: 50%;
-  left: 1rem;
+  right: 1rem;
   transform: translateY(-50%);
-  color: #8a929a;
-  pointer-events: none; /* The icon itself isn't clickable */
+  color: #adb5bd;
 }
 
 .search-input {
-  /* This padding pushes the placeholder text past the icon */
-  padding-left: 2.75rem !important; 
-  padding-right: 1rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+  padding: 0.65rem 2.5rem 0.65rem 1rem;
   border: 1px solid #dee2e6;
   border-radius: 8px;
   font-size: 0.9rem;
@@ -59,12 +51,12 @@
 
 .search-input:focus {
   outline: none;
-  border-color: #0d6efd;
-  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+  border-color: #0dcaf0;
+  box-shadow: 0 0 0 3px rgba(13, 202, 240, 0.1);
 }
 
 .add-new-btn {
-  background-color: #0d6efd;
+  background-color: #0dcaf0;
   color: white;
   border: none;
   padding: 0.75rem 1.25rem;
@@ -79,14 +71,14 @@
 }
 
 .add-new-btn:hover {
-  background-color: #0b5ed7;
+  background-color: #0aa7c4;
 }
 
 /* --- TABLE CARD STYLES --- */
 .table-wrapper {
   background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   border: 1px solid #e9ecef;
 }
@@ -109,7 +101,7 @@
 }
 
 .vendor-table th {
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   font-weight: 600;
   color: #495057;
   font-size: 0.8rem;
@@ -132,7 +124,7 @@
   width: 38px;
   height: 38px;
   border-radius: 8px;
-  border: none;
+  border: 1px solid;
   display: grid;
   place-items: center;
   cursor: pointer;
@@ -141,56 +133,53 @@
 }
 
 .edit-btn {
-  background-color: #e7f3ff;
-  color: #0d6efd;
+  background-color: #e7f9fc;
+  border-color: #0dcaf0;
+  color: #0dcaf0;
 }
 .edit-btn:hover {
-  background-color: #d0e7ff;
+  background-color: #d0f3fa;
 }
 
 .delete-btn {
-  background-color: #fce8e6;
-  color: #dc3545;
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+  color: #6c757d;
 }
 .delete-btn:hover {
-  background-color: #f8d7da;
+  background-color: #e9ecef;
 }
 
-/* --- NEW, SIMPLIFIED SORTING INDICATOR STYLES --- */
-.vendor-table th.sortable {
-  cursor: pointer;
-}
-
-.sort-indicator {
-  color: #0d6efd; /* Blue color for the arrow */
-  margin-left: 0.5rem;
-  display: inline-block; /* Required for transforms */
-  transition: transform 0.2s ease-in-out;
-}
-
-/* By default, the arrow points up */
-.sort-indicator.ascending {
-  transform: rotate(0deg);
-}
-
-/* When the descending class is added, flip it */
-.sort-indicator.descending {
-  transform: rotate(180deg);
-}
-
-/* --- FOOTER STYLES --- */
 .list-footer {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
   padding: 0.5rem 1rem;
   color: #6c757d;
   font-size: 0.9rem;
 }
 
-/* --- EMPTY STATE --- */
+.pagination-controls button {
+    border: 1px solid #dee2e6;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 0.25rem 0.75rem;
+    cursor: pointer;
+}
+
+.pagination-controls button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.pagination-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
 .empty-state {
   text-align: center;
   padding: 4rem;
+  color: #6c757d;
 }

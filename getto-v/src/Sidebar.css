@@ -1,39 +1,34 @@
 /* src/Sidebar.css */
 .sidebar {
-    width: 260px;
+    width: 280px;
     height: 100vh;
     background-color: #ffffff;
     border-right: 1px solid #e9ecef;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 2rem 1.5rem;
+    padding: 1.5rem;
     box-sizing: border-box;
     flex-shrink: 0;
     transition: transform 0.3s ease-in-out;
 }
 
 .company-name {
-    font-size: 2rem;
-    font-weight: 700;
-    font-style: italic;
-    color: #007bff;
-    text-align: center;
-    margin-bottom: 3rem;
-    margin-top: 1rem;
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+    margin-bottom: 2.5rem;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-
-.company-name:hover {
-    transform: scale(1.05);
-    text-shadow: 0px 4px 15px rgba(0, 123, 255, 0.4);
 }
 
 .nav-list {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
 }
 
 button.nav-item {
@@ -46,12 +41,11 @@ button.nav-item {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1rem 1.25rem;
-    margin-bottom: 0.5rem;
+    padding: 0.9rem 1rem;
     border-radius: 8px;
     text-decoration: none;
-    color: #495057;
-    font-size: 1.1rem;
+    color: #5a6470;
+    font-size: 1rem;
     font-weight: 500;
     transition: background-color 0.2s, color 0.2s;
 }
@@ -61,15 +55,19 @@ button.nav-item:hover {
 }
 
 button.nav-item.active {
-    background-color: #e6f2ff;
-    color: #007bff !important;
+    background-color: #0dcaf0;
+    color: #ffffff !important;
+}
+
+button.nav-item .profile-arrow {
+    margin-left: auto;
 }
 
 .profile-section {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding-top: 1.5rem;
+    padding: 1.5rem 0.5rem;
     border-top: 1px solid #e9ecef;
 }
 
@@ -97,4 +95,5 @@ button.nav-item.active {
 
 .profile-arrow {
     color: #6c757d;
+    cursor: pointer;
 }

@@ -45,18 +45,8 @@ const VendorList = ({
           <thead>
             <tr>
               <th>S.NO.</th>
-              <th onClick={() => requestSort('storeName')} className="sortable">
-                STORE
-                {sortConfig.key === 'storeName' && (
-                  <span className={`sort-indicator ${sortConfig.direction}`}>▲</span>
-                )}
-              </th>
-              <th onClick={() => requestSort('ownerName')} className="sortable">
-                OWNER
-                {sortConfig.key === 'ownerName' && (
-                  <span className={`sort-indicator ${sortConfig.direction}`}>▲</span>
-                )}
-              </th>
+              <th onClick={() => requestSort('storeName')} className="sortable">STORE</th>
+              <th onClick={() => requestSort('ownerName')} className="sortable">OWNER</th>
               <th>ADDRESS</th>
               <th>CONTACT NO</th>
               <th>ACTION</th>
@@ -110,6 +100,10 @@ const VendorList = ({
         <div className="list-footer">
           <span>Rows per page: {itemsPerPage}</span>
           <span>{`${firstItemNum}-${lastItemNum} of ${totalVendors}`}</span>
+          <div className="pagination-controls">
+              <button disabled={currentPage === 1} onClick={() => onPageChange(currentPage - 1)}></button>
+              <button disabled={lastItemNum >= totalVendors} onClick={() => onPageChange(currentPage + 1)}></button>
+          </div>
         </div>
       )}
     </div>

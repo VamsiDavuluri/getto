@@ -1,27 +1,9 @@
 /* src/StoreTimings.css */
-.timings-container {
-  width: 100%;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.timings-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
-
-.timings-header h3 {
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 500;
-}
-
 .apply-all-btn {
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  padding: 0.5rem 1rem;
+  background-color: #495057;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1rem;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 500;
@@ -30,13 +12,13 @@
 }
 
 .apply-all-btn:hover {
-  background-color: #e0e0e0;
+  background-color: #343a40;
 }
 
 .timings-form {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .day-row {
@@ -45,13 +27,9 @@
   align-items: center;
   padding: 1rem 1.5rem;
   border: 1px solid #e9ecef;
+  background-color: #fff;
   border-radius: 8px;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.day-row.closed {
-  background-color: #f8f9fa;
-  color: #6c757d;
+  transition: all 0.2s ease-in-out;
 }
 
 .day-toggle-wrapper {
@@ -63,6 +41,7 @@
 .day-label {
   font-weight: 500;
   font-size: 1rem;
+  color: #495057;
 }
 
 .time-inputs-wrapper {
@@ -75,19 +54,12 @@
   color: #888;
 }
 
-.time-input {
-  border: 1px solid #dbe1e8;
-  border-radius: 6px;
-  padding: 0.6rem;
-  font-size: 0.9rem;
-}
-
-/* Styles for the toggle switch */
+/* --- Custom Toggle Switch Styles --- */
 .switch {
   position: relative;
   display: inline-block;
-  width: 48px;
-  height: 26px;
+  width: 38px;
+  height: 22px;
 }
 
 .switch input {
@@ -110,8 +82,8 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 20px;
-  width: 20px;
+  height: 16px;
+  width: 16px;
   left: 3px;
   bottom: 3px;
   background-color: white;
@@ -119,15 +91,15 @@
 }
 
 input:checked + .slider {
-  background-color: #28a745;
+  background-color: #007bff;
 }
 
 input:checked + .slider:before {
-  transform: translateX(22px);
+  transform: translateX(16px);
 }
 
 .slider.round {
-  border-radius: 26px;
+  border-radius: 22px;
 }
 
 .slider.round:before {

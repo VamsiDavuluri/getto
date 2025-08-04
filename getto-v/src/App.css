@@ -14,214 +14,158 @@ body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  gap: 2rem;
+  padding: 2rem 2.5rem;
   overflow-y: auto;
   position: relative;
 }
 
-/* --- REVERTED STYLES FOR BUTTONS --- */
+.App.sidebar-closed .sidebar {
+  transform: translateX(-100%);
+}
 
-.page-actions {
+/* --- FORM VIEW & SHARED FORM STYLES --- */
+.form-view-container {
   width: 100%;
-  max-width: 900px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.form-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.form-section-header .title-with-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form-section-header .back-button {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #495057;
+  transition: background-color 0.2s;
+}
+.back-button:hover {
+  background-color: #e9ecef;
+}
+
+.form-section-header h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #212529;
+  margin: 0;
+}
+
+.form-row {
+  display: grid;
+  gap: 1.5rem 2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #495057;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="time"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  background-color: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.8rem;
+}
+
+input.input-error, select.input-error {
+  border-color: #dc3545 !important;
+}
+
+input.input-error:focus, select.input-error:focus {
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15) !important;
+}
+
+/* --- THIS IS THE NEW STYLE FOR THE DIVIDER --- */
+.section-divider {
+  border: 0;
+  border-top: 1px solid #e9ecef; /* A light grey line */
+  margin: 3rem 0; /* Creates 3rem of space above and below the line */
+}
+
+/* --- ACTION BUTTONS --- */
+.page-actions {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
-  padding: 1rem 2.5rem 2rem;
-  box-sizing: border-box;
   gap: 1rem;
+  padding: 1.5rem 0;
 }
 
 .cancel-button {
   padding: 0.75rem 2rem;
   background-color: #e9ecef;
-  color: #495057;
-  border: 1px solid #ced4da;
+  color: #212529;
+  border: none;
   border-radius: 6px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s;
-  margin-right: auto; /* Pushes save button to the right */
 }
-
 .cancel-button:hover {
   background-color: #dee2e6;
 }
 
-/* This is the "Save All" button */
 .submit-button {
   padding: 0.75rem 2rem;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 6px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.submit-button:hover {
-    background-color: #0056b3;
-}
-
-.submit-button:disabled {
-  background-color: #a9c7e8;
-  cursor: not-allowed;
-}
-
-/* --- Styles for Sidebar Toggle --- */
-.App.sidebar-closed .sidebar {
-  transform: translateX(-100%);
-}
-
-.sidebar-toggle-btn {
-  position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
-  border-radius: 6px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 1.2rem;
-  color: #495057;
-  z-index: 10;
-}
-
-.sidebar-toggle-btn:hover {
-  background-color: #e9ecef;
-}
-
-/* --- Styles for Loading Spinner --- */
-.loading-spinner {
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top: 3px solid #fff;
-  width: 20px;
-  height: 20px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.main-header {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  padding: 0 2rem;
-  box-sizing: border-box;
-}
-
-
-.logout-button {
-  background-color: #fce8e6;
-  border: 1px solid #f5c6cb;
-  color: #dc3545;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
+  font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s;
 }
-
-.logout-button:hover {
-  background-color: #f8d7da;
+.submit-button:hover {
+    background-color: #0056b3;
 }
-/* Add this to the end of src/App.css */
-
-/* --- PASTE THIS AT THE END of App.css --- */
-/* --- Replaces all previous form view styling --- */
-
-.form-view-container {
-  width: 100%;
-}
-
-/* Header with sidebar toggle and tabs */
-.form-header-with-tabs {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  border-bottom: 1px solid #dee2e6; /* Separator line under tabs */
-  padding: 0 2rem; /* Horizontal padding for the header */
-}
-
-/* Ensure toggle button is positioned correctly */
-.main-content .sidebar-toggle-btn {
-  position: static;
-}
-
-/* Tab navigation styling */
-.form-navigation {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.tab-button {
-  padding: 1rem 0.5rem;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  font-size: 1rem;
-  color: #6c757d;
-  border-bottom: 3px solid transparent;
-  transition: all 0.2s ease-in-out;
-}
-
-.tab-button:hover {
-  color: #343a40;
-}
-
-.tab-button.active {
-  color: #0d6efd;
-  border-bottom-color: #0d6efd;
-}
-
-/* --- KEY CHANGE: Remove card styles --- */
-/* This container no longer has a background or shadow */
-.tab-content {
-  padding: 2rem; /* Just provides spacing around the inner form */
-  margin-top: 0;
-  background-color: transparent; /* No white background */
-  border-radius: 0;
-  box-shadow: none;
-}
-
-/* --- ACTION BUTTONS STYLING for no-card layout --- */
-.page-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  width: 100%;
-  padding: 2rem; /* Give it space from the content above and sides */
-  /* REMOVED all background, border, and sticky properties */
-}
-
-/* Button styles remain the same */
-.cancel-button {
-  background-color: #f8f9fa;
-  color: #212529;
-  border: 1px solid #dee2e6;
-  padding: 0.75rem 2rem;
-  border-radius: 6px;
-}
-
-.submit-button {
-  background-color: #0d6efd;
-  color: white;
-  border: none;
-  padding: 0.75rem 2rem;
-  border-radius: 6px;
+.submit-button:disabled {
+  background-color: #a9c7e8;
+  cursor: not-allowed;
 }
