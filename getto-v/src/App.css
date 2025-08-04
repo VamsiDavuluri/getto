@@ -102,6 +102,14 @@ textarea {
   font-family: inherit;
 }
 
+/* --- UPDATED TEXTAREA STYLES --- */
+textarea {
+  resize: vertical; /* Allow vertical resizing only */
+  min-height: 80px;  /* Set a consistent starting height */
+  max-height: 250px; /* Prevent resizing beyond this height */
+}
+
+
 input:focus, select:focus, textarea:focus {
   outline: none;
   border-color: #007bff;
@@ -121,11 +129,10 @@ input.input-error:focus, select.input-error:focus {
   box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15) !important;
 }
 
-/* --- THIS IS THE NEW STYLE FOR THE DIVIDER --- */
 .section-divider {
   border: 0;
-  border-top: 1px solid #e9ecef; /* A light grey line */
-  margin: 3rem 0; /* Creates 3rem of space above and below the line */
+  border-top: 1px solid #e9ecef;
+  margin: 3rem 0;
 }
 
 /* --- ACTION BUTTONS --- */

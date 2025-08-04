@@ -10,30 +10,29 @@ const Login = ({ onLogin }) => {
   const [error, setError] = useState('');
 
   const handleLoginSubmit = (e) => {
-    e.preventDefault(); // Prevent the form from actually submitting
-    setError(''); // Clear previous errors
+    e.preventDefault();
+    setError('');
 
-    // --- Basic Validation ---
     if (!email || !password) {
       setError('Both email and password are required.');
       return;
     }
 
-    // --- Simulate a Successful Login ---
-    // In a real application, you would make an API call here.
-    // For this example, any non-empty email/password will work.
     console.log('Logging in with:', { email, password });
-    onLogin(); // Call the function passed from App.js to set isLoggedIn to true
+    onLogin();
+  };
+  
+  const handleForgotPassword = () => {
+      // In the future, you can add logic here to show a password reset modal
+      alert("Forgot Password functionality has not been implemented yet.");
   };
 
   return (
     <div className="login-container">
-      {/* Left Showcase Panel */}
       <div className="login-showcase">
-        <h1 className="logo-text"><img src="g.png" alt="" /></h1>
+        <h1 className="logo-text"><img src="getto.svg" alt="" /></h1>
       </div>
 
-      {/* Right Form Panel */}
       <div className="login-form-wrapper">
         <div className="login-form">
           <h2>Log In</h2>
@@ -76,7 +75,17 @@ const Login = ({ onLogin }) => {
                 <input type="checkbox" id="rememberMe" className="form-check-input" />
                 <label htmlFor="rememberMe" className="form-check-label">Remember me</label>
               </div>
-              <a href="#" className="forgot-password-link">Forgot Password?</a>
+              
+              {/* --- THIS IS THE CORRECTED ELEMENT --- */}
+              {/* It is now a button, which is semantically correct. */}
+              <button 
+                type="button" 
+                onClick={handleForgotPassword}
+                className="forgot-password-link"
+              >
+                Forgot Password?
+              </button>
+
             </div>
 
             <button type="submit" className="login-btn">

@@ -98,15 +98,18 @@ button.nav-item .profile-arrow {
     cursor: pointer;
 }
 /* Add this to src/Sidebar.css */
+/* Add this to the end of src/Sidebar.css */
 .logout-btn {
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
   color: #6c757d;
-  font-size: 1.2rem;
+  font-size: 1.5rem; /* Make icon larger */
+  line-height: 1;
   transition: color 0.2s;
 }
+
 .logout-btn:hover {
-    color: #dc3545;
+  color: #dc3545; /* Turn red on hover */
 }

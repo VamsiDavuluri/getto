@@ -7,12 +7,13 @@ import StoreTimings from './StoreTimings';
 import BusinessAndBankDetails from './BusinessAndBankDetails';
 import VendorList from './VendorList';
 import Toast from './Toast';
-import Login from './Login'; // Import the new Login component
+import Login from './Login'; // Import the Login component
 import './App.css';
 
-// --- ALL YOUR VENDOR APP LOGIC LIVES IN THIS COMPONENT ---
+// --- This component contains ALL your vendor management logic ---
+// It is only shown when the user is logged in.
 const MainApplication = ({ onLogout }) => {
-  // All state and logic from your vendor app is here
+  // --- STATE MANAGEMENT for the Vendor App ---
   const [view, setView] = useState('list');
   const [vendors, setVendors] = useState([]);
   const [isSidebarOpen] = useState(true);
@@ -28,6 +29,7 @@ const MainApplication = ({ onLogout }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  // Initial state objects for resetting forms
   const initialVendorState = { storeName: '', ownerName: '', phone: '', email: '', location: '', address: '', state: '', city: '', pincode: '', landmark: '', description: '' };
   const initialTimingsState = { monday: { isOpen: false, from: '', to: '' }, tuesday: { isOpen: false, from: '', to: '' }, wednesday: { isOpen: false, from: '', to: '' }, thursday: { isOpen: false, from: '', to: '' }, friday: { isOpen: false, from: '', to: '' }, saturday: { isOpen: false, from: '', to: '' }, sunday: { isOpen: false, from: '', to: '' } };
   const initialBusinessState = { gst: '', pan: '', commission: '', bankName: '', accountType: '', accountHolderName: '', accountNumber: '', accountNumberConfirm: '', ifscCode: '' };
@@ -71,7 +73,12 @@ const MainApplication = ({ onLogout }) => {
         return null;
       case 'email':
         if (!value) return 'Email is required.';
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) return 'Please enter a valid email format.';
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) {
+            return 'Please enter a valid email format (e.g., name@example.com).';
+        }
+        if (value.includes('..')) {
+            return 'Email cannot contain consecutive dots.';
+        }
         return null;
       case 'location': case 'address': return !value ? 'This field is required.' : null;
       case 'gst':
@@ -227,10 +234,7 @@ const MainApplication = ({ onLogout }) => {
   };
 
   const handleToggle = (day) => {
-    setTimings(prev => ({
-      ...prev,
-      [day]: { ...prev[day], isOpen: !prev[day].isOpen }
-    }));
+    setTimings(prev => ({ ...prev, [day]: { ...prev[day], isOpen: !prev[day].isOpen }}));
   };
   
   const handleTimeChange = (day, field, value) => {
@@ -240,11 +244,7 @@ const MainApplication = ({ onLogout }) => {
   const handlePlaceSelect = (place) => {
     if (!place.address_components) return;
     const get = (type) => place.address_components.find(c => c.types.includes(type))?.long_name || '';
-    setFormData(prev => ({
-      ...prev,
-      location: place.formatted_address || '', address: place.name || '',
-      state: get('administrative_area_level_1'), city: get('locality'), pincode: get('postal_code'),
-    }));
+    setFormData(prev => ({ ...prev, location: place.formatted_address || '', address: place.name || '', state: get('administrative_area_level_1'), city: get('locality'), pincode: get('postal_code')}));
   };
 
   const requestSort = (key) => {
@@ -276,9 +276,9 @@ const MainApplication = ({ onLogout }) => {
   // --- RENDER LOGIC for the main application part ---
   return (
     <div className={`App ${isSidebarOpen ? '' : 'sidebar-closed'}`}>
-      <Toast message={toast.message} type={toast.type} onClose={() => setToast({ message: '', type: '' })} />
       <Sidebar onLogout={onLogout} />
       <main className="main-content">
+        <Toast message={toast.message} type={toast.type} onClose={() => setToast({ message: '', type: '' })} />
         {view === 'list' ? (
           <VendorList 
             vendors={visibleVendors} 
@@ -331,7 +331,7 @@ const MainApplication = ({ onLogout }) => {
 };
 
 
-// --- THE MAIN APP COMPONENT IS NOW THE ROUTER ---
+// --- THIS IS THE MAIN APP COMPONENT THAT ACTS AS THE ROUTER ---
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
