@@ -2,20 +2,21 @@
 
 import React from 'react';
 import './Sidebar.css';
-import { GoHome, GoPackage, GoCreditCard, GoPerson, GoGraph } from 'react-icons/go';
+import { GoHome, GoPackage, GoCreditCard, GoPerson,  GoSignOut } from 'react-icons/go';
 import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 
-const Sidebar = () => {
+// It now accepts an onLogout function as a prop
+const Sidebar = ({ onLogout }) => {
     const [isUserManagementOpen, setIsUserManagementOpen] = React.useState(false);
 
     return (
         <aside className="sidebar">
             <div className="sidebar-top">
-                <h2 className="company-name"><img src="logo.svg" alt="Getto Logo" /></h2>
+                <h2 className="company-name"><img src="logo.svg" alt="" /></h2>
                 <nav>
                     <ul className="nav-list">
                         <li><button type="button" className="nav-item"><GoHome size={24} /> Dashboard</button></li>
-                        <li><button type="button" className="nav-item"><GoGraph size={24} /> Inventory</button></li>
+                        {/* Other nav items... */}
                         <li><button type="button" className="nav-item active"><GoPerson size={24} /> Vendors</button></li>
                         <li><button type="button" className="nav-item"><GoPackage size={24} /> Orders</button></li>
                         <li><button type="button" className="nav-item"><GoCreditCard size={24} /> Payments</button></li>
@@ -31,6 +32,14 @@ const Sidebar = () => {
                 </nav>
             </div>
 
+            {/* The profile section now contains a clickable logout button */}
+            <div className="profile-section">
+
+                {/* THIS IS THE LOGOUT BUTTON */}
+                <button onClick={onLogout} className="logout-btn" title="Log Out">
+                    <GoSignOut className="profile-arrow" />
+                </button>
+            </div>
         </aside>
     );
 };

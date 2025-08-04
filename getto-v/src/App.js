@@ -7,30 +7,18 @@ import StoreTimings from './StoreTimings';
 import BusinessAndBankDetails from './BusinessAndBankDetails';
 import VendorList from './VendorList';
 import Toast from './Toast';
+import Login from './Login'; // Import the new Login component
 import './App.css';
 
-const initialVendorState = { storeName: '', ownerName: '', phone: '', email: '', location: '', address: '', state: '', city: '', pincode: '', landmark: '', description: '' };
-
-const initialTimingsState = {
-  monday:    { isOpen: false, from: '', to: '' },
-  tuesday:   { isOpen: false, from: '', to: '' },
-  wednesday: { isOpen: false, from: '', to: '' },
-  thursday:  { isOpen: false, from: '', to: '' },
-  friday:    { isOpen: false, from: '', to: '' },
-  saturday:  { isOpen: false, from: '', to: '' },
-  sunday:    { isOpen: false, from: '', to: '' }
-};
-
-const initialBusinessState = { gst: '', pan: '', commission: '', bankName: '', accountType: '', accountHolderName: '', accountNumber: '', accountNumberConfirm: '', ifscCode: '' };
-
-function App() {
-  // --- All State and Logic Functions are Unchanged ---
+// --- ALL YOUR VENDOR APP LOGIC LIVES IN THIS COMPONENT ---
+const MainApplication = ({ onLogout }) => {
+  // All state and logic from your vendor app is here
   const [view, setView] = useState('list');
   const [vendors, setVendors] = useState([]);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [formData, setFormData] = useState(initialVendorState);
-  const [timings, setTimings] = useState(initialTimingsState);
-  const [businessDetails, setBusinessDetails] = useState(initialBusinessState);
+  const [isSidebarOpen] = useState(true);
+  const [formData, setFormData] = useState({ storeName: '', ownerName: '', phone: '', email: '', location: '', address: '', state: '', city: '', pincode: '', landmark: '', description: '' });
+  const [timings, setTimings] = useState({ monday: { isOpen: false, from: '', to: '' }, tuesday: { isOpen: false, from: '', to: '' }, wednesday: { isOpen: false, from: '', to: '' }, thursday: { isOpen: false, from: '', to: '' }, friday: { isOpen: false, from: '', to: '' }, saturday: { isOpen: false, from: '', to: '' }, sunday: { isOpen: false, from: '', to: '' } });
+  const [businessDetails, setBusinessDetails] = useState({ gst: '', pan: '', commission: '', bankName: '', accountType: '', accountHolderName: '', accountNumber: '', accountNumberConfirm: '', ifscCode: '' });
   const [editingVendorId, setEditingVendorId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
@@ -40,6 +28,11 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  const initialVendorState = { storeName: '', ownerName: '', phone: '', email: '', location: '', address: '', state: '', city: '', pincode: '', landmark: '', description: '' };
+  const initialTimingsState = { monday: { isOpen: false, from: '', to: '' }, tuesday: { isOpen: false, from: '', to: '' }, wednesday: { isOpen: false, from: '', to: '' }, thursday: { isOpen: false, from: '', to: '' }, friday: { isOpen: false, from: '', to: '' }, saturday: { isOpen: false, from: '', to: '' }, sunday: { isOpen: false, from: '', to: '' } };
+  const initialBusinessState = { gst: '', pan: '', commission: '', bankName: '', accountType: '', accountHolderName: '', accountNumber: '', accountNumberConfirm: '', ifscCode: '' };
+
+  // --- API CALLS ---
   const fetchVendors = async () => {
     try {
       const response = await fetch('http://localhost:5001/api/vendors');
@@ -64,6 +57,7 @@ function App() {
     }
   };
   
+  // --- VALIDATION & SAVING ---
   const validateField = (name, value, allData) => {
     switch (name) {
       case 'storeName': return !value ? 'Store name is required.' : null;
@@ -158,6 +152,7 @@ function App() {
     }
   };
 
+  // --- EFFECT & MEMO HOOKS ---
   useEffect(() => {
     if (view === 'list') {
       fetchVendors();
@@ -187,6 +182,7 @@ function App() {
     return sortableVendors.slice(firstItemIndex, lastItemIndex);
   }, [vendors, searchTerm, sortConfig, currentPage]);
 
+  // --- EVENT HANDLERS ---
   const handleUniversalChange = (e, setter) => {
     const { name, value } = e.target;
     setter(prev => ({ ...prev, [name]: value }));
@@ -277,11 +273,11 @@ function App() {
     setToast({ message: "Monday's timings have been applied to all days.", type: 'success' });
   };
 
-  // --- RENDER LOGIC ---
+  // --- RENDER LOGIC for the main application part ---
   return (
     <div className={`App ${isSidebarOpen ? '' : 'sidebar-closed'}`}>
       <Toast message={toast.message} type={toast.type} onClose={() => setToast({ message: '', type: '' })} />
-      <Sidebar />
+      <Sidebar onLogout={onLogout} />
       <main className="main-content">
         {view === 'list' ? (
           <VendorList 
@@ -307,27 +303,20 @@ function App() {
               handleBlur={handleBlur}
               onBack={handleCancel}
             />
-
-            {/* This is the new divider line */}
             <hr className="section-divider" />
-
             <StoreTimings 
               timings={timings} 
               handleToggle={handleToggle}
               handleTimeChange={handleTimeChange} 
               handleApplyToAll={handleApplyToAll}
             />
-
-            {/* This is the new divider line */}
             <hr className="section-divider" />
-
             <BusinessAndBankDetails 
               details={businessDetails} 
               handleChange={(e) => handleUniversalChange(e, setBusinessDetails)} 
               errors={errors} 
               handleBlur={handleBlur}
             />
-            
             <div className="page-actions">
               <button onClick={handleCancel} className="cancel-button">Cancel</button>
               <button onClick={handlePageSave} className="submit-button" disabled={isLoading}>
@@ -338,6 +327,30 @@ function App() {
         )}
       </main>
     </div>
+  );
+};
+
+
+// --- THE MAIN APP COMPONENT IS NOW THE ROUTER ---
+function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
+  return (
+    <>
+      {isLoggedIn ? (
+        <MainApplication onLogout={handleLogout} />
+      ) : (
+        <Login onLogin={handleLogin} />
+      )}
+    </>
   );
 }
 
