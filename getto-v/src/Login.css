@@ -124,8 +124,8 @@
   border-color: #ced4da;
 }
 .form-check-input:checked {
-  background-color: #00bfa5;
-  border-color: #00bfa5;
+  background-color: #25bcb4;
+  border-color: #25bcb4;
 }
 
 .form-check-label {
@@ -139,7 +139,7 @@
   background: none;
   border: none;
   padding: 0;
-  color: #00bfa5;
+  color: #25bcb4;
   text-decoration: none;
   font-weight: 500;
   font-family: inherit; /* Ensure it uses the same font */
@@ -155,7 +155,7 @@
   padding: 0.9rem;
   border: none;
   border-radius: 8px;
-  background: linear-gradient(90deg, #25bcb4, #00bfa5);
+  background: linear-gradient(90deg, #25bcb4, #25bcb4);
   color: white;
   font-size: 1rem;
   font-weight: 600;
@@ -166,7 +166,7 @@
 
 .login-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 191, 165, 0.3);
+  box-shadow: 0 4px 15px #25bcb4
 }
 
 /* Responsive adjustments */
